@@ -1,0 +1,28 @@
+{
+  "manifest_version": 2,
+  "name": "MoxLoader",
+  "description": "Mox Loader",
+  "version": "0.0.1",
+  "background": {
+    "scripts": [
+      "event.js"
+    ],
+    "persistent": true
+  },
+  "browser_action": {
+    "default_title": "Mox Loader",
+    "default_popup": "popup.html"
+  },
+  "content_scripts": [
+    {
+      "matches": ["*://*/*"],
+      "css": [],
+      "js": ["content.js"]
+    }
+  ],
+  "icons": {
+    "16": "mox-hexagon.png",
+    "48": "mox-hexagon.png",
+    "128": "mox-hexagon.png"
+  }
+}
