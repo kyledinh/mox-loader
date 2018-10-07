@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
+import {Type} from '../../../../../system';
 
 class App extends Component {
   constructor(props) {
@@ -9,7 +10,7 @@ class App extends Component {
   componentDidMount() {
     document.addEventListener('click', () => {
       this.props.dispatch({
-        type: 'ADD_COUNT'
+        type: Type.ADD_COUNT
       });
     });
   }
