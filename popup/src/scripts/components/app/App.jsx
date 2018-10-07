@@ -4,26 +4,29 @@ import {connect} from 'react-redux';
 class App extends Component {
   constructor(props) {
     super(props);
-    this.state = {
-      count: 0
-    }
   }
 
   componentDidMount() {
-    setInterval(() => {
-      this.setState({
-        count: this.state.count + 1
-      })
-    }, 1000)
+    document.addEventListener('click', () => {
+      this.props.dispatch({
+        type: 'ADD_COUNT'
+      });
+    });
   }
 
   render() {
     return (
       <div style={{width: 300, height: 100}}>
-        This is the popup! {this.state.count}
+        This is the popup! {this.props.count}
       </div>
     );
   }
 }
 
-export default App;
+const mapStateToProps = (state) => {
+  return {
+    count: state.count
+  };
+};
+
+export default connect(mapStateToProps)(App);

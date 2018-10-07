@@ -1,29 +1,32 @@
 import React, {Component} from 'react';
+import {connect} from 'react-redux';
 
 class App extends Component {
   constructor(props) {
     super(props);
-
-    this.state = {
-      count: 0
-    };
   }
 
   componentDidMount() {
     document.addEventListener('click', () => {
-      this.setState({
-        count: this.state.count + 1
+      this.props.dispatch({
+        type: 'ADD_COUNT'
       });
     });
   }
 
   render() {
     return (
-      <div style={{width: '100%', color: '#eee', backgroundColor: '#222', paddingLeft: 10, marginBottom: 6}}>
-        Content Count: {this.state.count}
+      <div>
+        Count: {this.props.count}
       </div>
     );
   }
 }
 
-export default App;
+const mapStateToProps = (state) => {
+  return {
+    count: state.count
+  };
+};
+
+export default connect(mapStateToProps)(App);
