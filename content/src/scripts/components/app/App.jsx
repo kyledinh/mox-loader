@@ -19,8 +19,8 @@ class App extends Component {
 
   render() {
     return (
-      <div>
-        Count: {this.state.count}
+      <div style={{width: '100%', color: '#eee', backgroundColor: '#222', paddingLeft: 10, marginBottom: 6}}>
+        Content Count: {this.state.count}
       </div>
     );
   }
