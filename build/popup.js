@@ -63,7 +63,7 @@
 /******/ 	__webpack_require__.p = "/";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 276);
+/******/ 	return __webpack_require__(__webpack_require__.s = 277);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -11192,18 +11192,20 @@ var _react2 = _interopRequireDefault(_react);
 
 var _reactDom = __webpack_require__(181);
 
-var _App = __webpack_require__(110);
-
-var _App2 = _interopRequireDefault(_App);
-
 var _reactChromeRedux = __webpack_require__(177);
 
 var _reactRedux = __webpack_require__(97);
 
+var _system = __webpack_require__(276);
+
+var _App = __webpack_require__(110);
+
+var _App2 = _interopRequireDefault(_App);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var proxyStore = new _reactChromeRedux.Store({
-  portName: 'example'
+  portName: _system.Cfg.PORTNAME
 });
 
 proxyStore.ready().then(function () {
@@ -26396,6 +26398,27 @@ module.exports = function(originalModule) {
 
 /***/ }),
 /* 276 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+const Cfg = {
+  PORTNAME : 'example',
+  VERSION: 'v0.1',
+  BUILD_DATE: '2018.10.06',
+}
+/* harmony export (immutable) */ __webpack_exports__["Cfg"] = Cfg;
+
+
+const Sys = {
+
+}
+/* harmony export (immutable) */ __webpack_exports__["Sys"] = Sys;
+
+
+
+/***/ }),
+/* 277 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__(109);

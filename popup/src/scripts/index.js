@@ -1,13 +1,13 @@
 import React from 'react';
 import {render} from 'react-dom';
+import {Store} from 'react-chrome-redux';
+import {Provider} from 'react-redux';
+import {Cfg} from '../../../system';
 
 import App from './components/app/App';
 
-import {Store} from 'react-chrome-redux';
-import {Provider} from 'react-redux';
-
 const proxyStore = new Store({
-  portName: 'example'
+  portName: Cfg.PORTNAME
 });
 
 proxyStore.ready().then(() => {
