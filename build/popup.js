@@ -11200,7 +11200,8 @@ const Sys = {
 
 
 const Type = {
-  ADD_COUNT: 'ADD_COUNT'
+  ADD_COUNT: 'ADD_COUNT',
+  RESET_COUNT: 'RESET_COUNT'
 }
 /* harmony export (immutable) */ __webpack_exports__["Type"] = Type;
 
@@ -11279,17 +11280,23 @@ var App = function (_Component) {
     _classCallCheck(this, App);
 
     return _possibleConstructorReturn(this, (App.__proto__ || Object.getPrototypeOf(App)).call(this, props));
+    //this.resetCounter = this.resetCounter.bind(this);
   }
 
   _createClass(App, [{
     key: 'componentDidMount',
     value: function componentDidMount() {
-      var _this2 = this;
-
-      document.addEventListener('click', function () {
-        _this2.props.dispatch({
-          type: _system.Type.ADD_COUNT
-        });
+      // document.addEventListener('click', () => {
+      //   this.props.dispatch({
+      //     type: Type.ADD_COUNT
+      //   });
+      // });
+    }
+  }, {
+    key: 'resetCounter',
+    value: function resetCounter() {
+      this.props.dispatch({
+        type: _system.Type.RESET_COUNT
       });
     }
   }, {
@@ -11299,7 +11306,16 @@ var App = function (_Component) {
         'div',
         { style: { width: 300, height: 100 } },
         'This is the popup! ',
-        this.props.count
+        this.props.count,
+        _react2.default.createElement(
+          'div',
+          null,
+          _react2.default.createElement(
+            'button',
+            { type: 'button', onClick: this.resetCounter.bind(this) },
+            'Reset!'
+          )
+        )
       );
     }
   }]);

@@ -7,11 +7,9 @@ class App extends Component {
     super(props);
   }
 
-  componentDidMount() {
-    document.addEventListener('click', () => {
-      this.props.dispatch({
-        type: Type.ADD_COUNT
-      });
+  resetCounter() {
+    this.props.dispatch({
+      type: Type.RESET_COUNT
     });
   }
 
@@ -19,6 +17,9 @@ class App extends Component {
     return (
       <div style={{width: 300, height: 100}}>
         This is the popup! {this.props.count}
+        <div>
+          <button type="button" onClick={this.resetCounter.bind(this)}>Reset!</button>
+        </div>
       </div>
     );
   }

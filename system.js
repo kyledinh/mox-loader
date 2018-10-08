@@ -9,5 +9,6 @@ export const Sys = {
 }
 
 export const Type = {
-  ADD_COUNT: 'ADD_COUNT'
+  ADD_COUNT: 'ADD_COUNT',
+  RESET_COUNT: 'RESET_COUNT'
 }

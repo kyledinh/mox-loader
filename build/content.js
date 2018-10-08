@@ -11200,7 +11200,8 @@ const Sys = {
 
 
 const Type = {
-  ADD_COUNT: 'ADD_COUNT'
+  ADD_COUNT: 'ADD_COUNT',
+  RESET_COUNT: 'RESET_COUNT'
 }
 /* harmony export (immutable) */ __webpack_exports__["Type"] = Type;
 

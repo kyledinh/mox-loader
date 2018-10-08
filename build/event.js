@@ -1224,7 +1224,8 @@ const Sys = {
 
 
 const Type = {
-  ADD_COUNT: 'ADD_COUNT'
+  ADD_COUNT: 'ADD_COUNT',
+  RESET_COUNT: 'RESET_COUNT'
 }
 /* harmony export (immutable) */ __webpack_exports__["Type"] = Type;
 
@@ -1277,6 +1278,8 @@ exports.default = function () {
   switch (action.type) {
     case _system.Type.ADD_COUNT:
       return state + (action.payload || 1);
+    case _system.Type.RESET_COUNT:
+      return initialState;
     default:
       return state;
   }
