@@ -25,5 +25,11 @@
     "48": "mox-hexagon.png",
     "128": "mox-hexagon.png"
   },
-  "permissions": ["declarativeContent"]
+  "permissions": [
+    "activeTab",
+    "declarativeContent",
+    "tabs",
+    "notifications",
+    "http://*/",
+    "https://*/"]
 }

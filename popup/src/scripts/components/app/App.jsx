@@ -29,7 +29,6 @@ class App extends Component {
         <div>
           <button type="button" onClick={this.resetCounter.bind(this)}>Reset!</button>
           <button type="button" onClick={this.changeColor.bind(this)}>Color BG Red</button>
-
         </div>
       </div>
     );

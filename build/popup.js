@@ -11316,7 +11316,7 @@ var App = function (_Component) {
           _react2.default.createElement(
             'button',
             { type: 'button', onClick: this.changeColor.bind(this) },
-            'Color'
+            'Color BG Red'
           )
         )
       );

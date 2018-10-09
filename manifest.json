@@ -26,6 +26,7 @@
     "128": "mox-hexagon.png"
   },
   "permissions": [
+    "activeTab",
     "declarativeContent",
     "tabs",
     "notifications",

@@ -11276,13 +11276,43 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
+var NavBar = {
+  width: '100%', display: 'flex', position: 'relative', zIndex: 100, justify: "space-between", spacing: 24,
+  backgroundColor: 'rgba(0,0,0,.2)', padding: 10
+};
+
+var BarLeft = {
+  marginRight: 10
+};
+
+var BarRight = {
+  position: 'absolute',
+  right: 10
+};
+
+var Button = {
+  backgroundColor: '#232323',
+  border: 'none',
+  color: 'white',
+  padding: '8px 8px',
+  textAlign: 'center',
+  textDecoration: 'none',
+  display: 'inline-block',
+  fontSize: '12px'
+};
+
 var App = function (_Component) {
   _inherits(App, _Component);
 
   function App(props) {
     _classCallCheck(this, App);
 
-    return _possibleConstructorReturn(this, (App.__proto__ || Object.getPrototypeOf(App)).call(this, props));
+    var _this = _possibleConstructorReturn(this, (App.__proto__ || Object.getPrototypeOf(App)).call(this, props));
+
+    _this.state = {
+      linkCount: 0
+    };
+    return _this;
   }
 
   _createClass(App, [{
@@ -11295,15 +11325,76 @@ var App = function (_Component) {
           type: _system.Type.ADD_COUNT
         });
       });
+
+      document.addEventListener('message', function (e) {
+        var data = e.data;
+        if (data) {
+          switch (data.type) {
+            case 'rc-call-ring-notify':
+              // get call on ring event
+              console.log('RingCentral Embeddable Voice Extension:', data.call);
+              break;
+            case 'rc-call-end-notify':
+              // get call on call end event
+              console.log('RingCentral Embeddable Voice Extension:', data.call);
+              break;
+            case 'rc-call-start-notify':
+              // get call on start a outbound call event
+              console.log('RingCentral Embeddable Voice Extension:', data.call);
+              break;
+            default:
+              break;
+          }
+        }
+      });
+    }
+  }, {
+    key: 'changeColor',
+    value: function changeColor() {
+      console.log("Called from Content page.");
+      //document.body.bgColor="blue";
+      var ptags = document.querySelectorAll("p");
+      var pcount = ptags ? ptags.length : 0;
+      this.setState({ linkCount: pcount });
     }
   }, {
     key: 'render',
     value: function render() {
+      var _this3 = this;
+
       return _react2.default.createElement(
         'div',
-        null,
-        'Count: ',
-        this.props.count
+        { style: NavBar },
+        _react2.default.createElement(
+          'div',
+          { style: BarLeft },
+          'Mox-Loader Count: ',
+          this.props.count
+        ),
+        _react2.default.createElement(
+          'div',
+          { style: BarLeft },
+          'This Page\'s Count: ',
+          this.state.linkCount
+        ),
+        _react2.default.createElement(
+          'div',
+          { style: BarRight },
+          _react2.default.createElement(
+            'button',
+            { style: Button, type: 'button', onClick: function onClick() {
+                return _this3.changeColor();
+              } },
+            'Paragraph Count'
+          ),
+          _react2.default.createElement(
+            'button',
+            { style: Button, type: 'button', onClick: function onClick() {
+                return alert('hello');
+              } },
+            'Button'
+          )
+        )
       );
     }
   }]);
