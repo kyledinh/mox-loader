@@ -11280,23 +11280,21 @@ var App = function (_Component) {
     _classCallCheck(this, App);
 
     return _possibleConstructorReturn(this, (App.__proto__ || Object.getPrototypeOf(App)).call(this, props));
-    //this.resetCounter = this.resetCounter.bind(this);
   }
 
   _createClass(App, [{
-    key: 'componentDidMount',
-    value: function componentDidMount() {
-      // document.addEventListener('click', () => {
-      //   this.props.dispatch({
-      //     type: Type.ADD_COUNT
-      //   });
-      // });
-    }
-  }, {
     key: 'resetCounter',
     value: function resetCounter() {
       this.props.dispatch({
         type: _system.Type.RESET_COUNT
+      });
+    }
+  }, {
+    key: 'changeColor',
+    value: function changeColor() {
+      var color = '#ff0000';
+      chrome.tabs.query({ active: true, currentWindow: true }, function (tabs) {
+        chrome.tabs.executeScript(tabs[0].id, { code: 'document.body.style.backgroundColor = "' + color + '";' });
       });
     }
   }, {
@@ -11314,6 +11312,11 @@ var App = function (_Component) {
             'button',
             { type: 'button', onClick: this.resetCounter.bind(this) },
             'Reset!'
+          ),
+          _react2.default.createElement(
+            'button',
+            { type: 'button', onClick: this.changeColor.bind(this) },
+            'Color'
           )
         )
       );

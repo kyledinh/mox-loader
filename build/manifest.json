@@ -24,5 +24,6 @@
     "16": "mox-hexagon.png",
     "48": "mox-hexagon.png",
     "128": "mox-hexagon.png"
-  }
+  },
+  "permissions": ["declarativeContent"]
 }
