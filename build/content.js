@@ -11318,13 +11318,12 @@ var App = function (_Component) {
   _createClass(App, [{
     key: 'componentDidMount',
     value: function componentDidMount() {
-      var _this2 = this;
 
-      document.addEventListener('click', function () {
-        _this2.props.dispatch({
-          type: _system.Type.ADD_COUNT
-        });
-      });
+      // document.addEventListener('click', () => {
+      //   this.props.dispatch({
+      //     type: Type.ADD_COUNT
+      //   });
+      // });
 
       document.addEventListener('message', function (e) {
         var data = e.data;
@@ -11349,6 +11348,14 @@ var App = function (_Component) {
       });
     }
   }, {
+    key: 'reportCount',
+    value: function reportCount() {
+      this.props.dispatch({
+        type: _system.Type.ADD_COUNT,
+        payload: this.state.linkCount
+      });
+    }
+  }, {
     key: 'changeColor',
     value: function changeColor() {
       console.log("Called from Content page.");
@@ -11360,7 +11367,7 @@ var App = function (_Component) {
   }, {
     key: 'render',
     value: function render() {
-      var _this3 = this;
+      var _this2 = this;
 
       return _react2.default.createElement(
         'div',
@@ -11383,16 +11390,16 @@ var App = function (_Component) {
           _react2.default.createElement(
             'button',
             { style: Button, type: 'button', onClick: function onClick() {
-                return _this3.changeColor();
+                return _this2.changeColor();
               } },
             'Paragraph Count'
           ),
           _react2.default.createElement(
             'button',
             { style: Button, type: 'button', onClick: function onClick() {
-                return alert('hello');
+                return _this2.reportCount();
               } },
-            'Button'
+            'Report Count'
           )
         )
       );

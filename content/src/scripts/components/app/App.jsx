@@ -38,11 +38,11 @@ class App extends Component {
 
   componentDidMount() {
 
-    document.addEventListener('click', () => {
-      this.props.dispatch({
-        type: Type.ADD_COUNT
-      });
-    });
+    // document.addEventListener('click', () => {
+    //   this.props.dispatch({
+    //     type: Type.ADD_COUNT
+    //   });
+    // });
 
     document.addEventListener('message', (e) => {
       const data = e.data;
@@ -67,6 +67,13 @@ class App extends Component {
     });
   }
 
+  reportCount() {
+    this.props.dispatch({
+      type: Type.ADD_COUNT,
+      payload: this.state.linkCount
+    });
+  }
+
   changeColor() {
     console.log("Called from Content page.");
     //document.body.bgColor="blue";
@@ -86,7 +93,7 @@ class App extends Component {
         </div>
         <div style={BarRight}>
           <button style={Button} type="button" onClick={() => this.changeColor()}>Paragraph Count</button>
-          <button style={Button} type="button" onClick={() => alert('hello')}>Button</button>
+          <button style={Button} type="button" onClick={() => this.reportCount()}>Report Count</button>
         </div>
       </div>
     );
