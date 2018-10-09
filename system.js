@@ -10,5 +10,6 @@ export const Sys = {
 
 export const Type = {
   ADD_COUNT: 'ADD_COUNT',
+  ADD_LINKS: 'ADD_LINKS',
   RESET_COUNT: 'RESET_COUNT'
 }

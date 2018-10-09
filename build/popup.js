@@ -11201,6 +11201,7 @@ const Sys = {
 
 const Type = {
   ADD_COUNT: 'ADD_COUNT',
+  ADD_LINKS: 'ADD_LINKS',
   RESET_COUNT: 'RESET_COUNT'
 }
 /* harmony export (immutable) */ __webpack_exports__["Type"] = Type;
@@ -11304,7 +11305,7 @@ var App = function (_Component) {
         'div',
         { style: { width: 300, height: 100 } },
         'This is the popup! ',
-        this.props.count,
+        this.props.count.clicks,
         _react2.default.createElement(
           'div',
           null,
@@ -11318,7 +11319,14 @@ var App = function (_Component) {
             { type: 'button', onClick: this.changeColor.bind(this) },
             'Color BG Red'
           )
-        )
+        ),
+        this.props.count.links.map(function (l) {
+          return _react2.default.createElement(
+            'div',
+            null,
+            l.toString()
+          );
+        })
       );
     }
   }]);

@@ -32,7 +32,8 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      linkCount: 0
+      linkCount: 0,
+      linkArray: []
     }
   }
 
@@ -69,24 +70,30 @@ class App extends Component {
 
   reportCount() {
     this.props.dispatch({
-      type: Type.ADD_COUNT,
-      payload: this.state.linkCount
+      type: Type.ADD_COUNT
+    });
+    this.props.dispatch({
+      type: Type.ADD_LINKS,
+      links: this.state.linkArray
     });
   }
 
   changeColor() {
     console.log("Called from Content page.");
     //document.body.bgColor="blue";
-    let ptags = document.querySelectorAll("p");
-    let pcount = ptags ? ptags.length : 0;
-    this.setState({linkCount: pcount});
+    let atags = Array.prototype.slice.call(document.querySelectorAll("a"));
+    let pcount = atags.length;
+    this.setState({
+      linkCount: pcount,
+      linkArray: atags
+    });
   }
 
   render() {
     return (
       <div style={NavBar}>
         <div style={BarLeft}>
-          Mox-Loader Count: {this.props.count}
+          Mox-Loader Count: {this.props.count.clicks}
         </div>
         <div style={BarLeft}>
           This Page's Count: {this.state.linkCount}

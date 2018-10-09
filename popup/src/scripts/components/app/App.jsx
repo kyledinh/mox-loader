@@ -25,11 +25,17 @@ class App extends Component {
   render() {
     return (
       <div style={{width: 300, height: 100}}>
-        This is the popup! {this.props.count}
+        This is the popup! {this.props.count.clicks}
         <div>
           <button type="button" onClick={this.resetCounter.bind(this)}>Reset!</button>
           <button type="button" onClick={this.changeColor.bind(this)}>Color BG Red</button>
         </div>
+        {this.props.count.links.map((n, i) => {
+          return (
+            <div key={i}>{n.toString()}</div>
+          )
+          })
+        }
       </div>
     );
   }

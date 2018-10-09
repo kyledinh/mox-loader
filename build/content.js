@@ -11201,6 +11201,7 @@ const Sys = {
 
 const Type = {
   ADD_COUNT: 'ADD_COUNT',
+  ADD_LINKS: 'ADD_LINKS',
   RESET_COUNT: 'RESET_COUNT'
 }
 /* harmony export (immutable) */ __webpack_exports__["Type"] = Type;
@@ -11310,7 +11311,8 @@ var App = function (_Component) {
     var _this = _possibleConstructorReturn(this, (App.__proto__ || Object.getPrototypeOf(App)).call(this, props));
 
     _this.state = {
-      linkCount: 0
+      linkCount: 0,
+      linkArray: []
     };
     return _this;
   }
@@ -11351,8 +11353,11 @@ var App = function (_Component) {
     key: 'reportCount',
     value: function reportCount() {
       this.props.dispatch({
-        type: _system.Type.ADD_COUNT,
-        payload: this.state.linkCount
+        type: _system.Type.ADD_COUNT
+      });
+      this.props.dispatch({
+        type: _system.Type.ADD_LINKS,
+        links: this.state.linkArray
       });
     }
   }, {
@@ -11360,9 +11365,12 @@ var App = function (_Component) {
     value: function changeColor() {
       console.log("Called from Content page.");
       //document.body.bgColor="blue";
-      var ptags = document.querySelectorAll("p");
-      var pcount = ptags ? ptags.length : 0;
-      this.setState({ linkCount: pcount });
+      var atags = Array.prototype.slice.call(document.querySelectorAll("a"));
+      var pcount = atags.length;
+      this.setState({
+        linkCount: pcount,
+        linkArray: atags
+      });
     }
   }, {
     key: 'render',
@@ -11376,7 +11384,7 @@ var App = function (_Component) {
           'div',
           { style: BarLeft },
           'Mox-Loader Count: ',
-          this.props.count
+          this.props.count.clicks
         ),
         _react2.default.createElement(
           'div',

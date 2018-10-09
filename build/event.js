@@ -1225,6 +1225,7 @@ const Sys = {
 
 const Type = {
   ADD_COUNT: 'ADD_COUNT',
+  ADD_LINKS: 'ADD_LINKS',
   RESET_COUNT: 'RESET_COUNT'
 }
 /* harmony export (immutable) */ __webpack_exports__["Type"] = Type;
@@ -1269,7 +1270,10 @@ Object.defineProperty(exports, "__esModule", {
 
 var _system = __webpack_require__(24);
 
-var initialState = 0;
+var initialState = {
+  clicks: 0,
+  links: []
+};
 
 exports.default = function () {
   var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : initialState;
@@ -1277,9 +1281,18 @@ exports.default = function () {
 
   switch (action.type) {
     case _system.Type.ADD_COUNT:
-      return state + (action.payload || 1);
+      return {
+        links: state.links,
+        clicks: state.clicks + (action.clicks || 1)
+      };
+    case _system.Type.ADD_LINKS:
+      return {
+        clicks: state.clicks,
+        links: action.links
+      };
     case _system.Type.RESET_COUNT:
       return initialState;
+
     default:
       return state;
   }
