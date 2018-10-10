@@ -102,14 +102,14 @@ class App extends Component {
     return (
       <div style={NavBar}>
         <div style={BarLeft}>
-          Mox-Loader Count: {this.props.count.clicks}
+          Pages Scraped: {this.props.count.clicks}
         </div>
         <div style={BarLeft}>
-          This Page's Count: {this.state.linkCount}
+          This Page's Img Count: {this.state.linkCount}
         </div>
         <div style={BarRight}>
-          <button style={Button} type="button" onClick={() => this.changeColor()}>Paragraph Count</button>
-          <button style={Button} type="button" onClick={() => this.reportCount()}>Report Count</button>
+          <button style={Button} type="button" onClick={() => this.changeColor()}>Scrape Img</button>
+          <button style={Button} type="button" onClick={() => this.reportCount()}>Save</button>
         </div>
       </div>
     );

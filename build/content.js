@@ -11392,13 +11392,13 @@ var App = function (_Component) {
         _react2.default.createElement(
           'div',
           { style: BarLeft },
-          'Mox-Loader Count: ',
+          'Pages Scraped: ',
           this.props.count.clicks
         ),
         _react2.default.createElement(
           'div',
           { style: BarLeft },
-          'This Page\'s Count: ',
+          'This Page\'s Img Count: ',
           this.state.linkCount
         ),
         _react2.default.createElement(
@@ -11409,14 +11409,14 @@ var App = function (_Component) {
             { style: Button, type: 'button', onClick: function onClick() {
                 return _this2.changeColor();
               } },
-            'Paragraph Count'
+            'Scrape Img'
           ),
           _react2.default.createElement(
             'button',
             { style: Button, type: 'button', onClick: function onClick() {
                 return _this2.reportCount();
               } },
-            'Report Count'
+            'Save'
           )
         )
       );
