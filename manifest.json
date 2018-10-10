@@ -28,6 +28,7 @@
   "permissions": [
     "activeTab",
     "declarativeContent",
+    "downloads",
     "tabs",
     "notifications",
     "http://*/",

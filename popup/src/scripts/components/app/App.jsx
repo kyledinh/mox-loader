@@ -22,18 +22,29 @@ class App extends Component {
     });
   }
 
+  downloadImage(url) {
+    console.log("trying to download: ", url);
+    chrome.downloads.download({
+      url: url
+    });
+  }
+
   render() {
     return (
-      <div style={{width: 300, height: 100}}>
+      <div style={{width: 600, height: 400}}>
         This is the popup! {this.props.count.clicks}
         <div>
           <button type="button" onClick={this.resetCounter.bind(this)}>Reset!</button>
           <button type="button" onClick={this.changeColor.bind(this)}>Color BG Red</button>
         </div>
         {this.props.count.links.map((n, i) => {
-          return (
-            <div key={i}>{n.toString()}</div>
-          )
+          console.log(n);
+          if (n.src != null) {
+          let src = n.src;
+            return (
+                <div key={i} onClick={(n) => {this.downloadImage(src)}}>{n.src}</div>
+            )
+          }
           })
         }
       </div>

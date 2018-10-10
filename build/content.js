@@ -11365,7 +11365,16 @@ var App = function (_Component) {
     value: function changeColor() {
       console.log("Called from Content page.");
       //document.body.bgColor="blue";
-      var atags = Array.prototype.slice.call(document.querySelectorAll("a"));
+      var nodeList = document.querySelectorAll("img");
+      var atags = [];
+
+      nodeList.forEach(function (n) {
+        var obj = {
+          src: n.src
+        };
+        atags.push(obj);
+      });
+
       var pcount = atags.length;
       this.setState({
         linkCount: pcount,

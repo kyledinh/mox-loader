@@ -81,7 +81,16 @@ class App extends Component {
   changeColor() {
     console.log("Called from Content page.");
     //document.body.bgColor="blue";
-    let atags = Array.prototype.slice.call(document.querySelectorAll("a"));
+    let nodeList = document.querySelectorAll("img");
+    let atags = [];
+
+    nodeList.forEach((n) => {
+      let obj = {
+        src: n.src
+      }
+      atags.push(obj);
+    });
+
     let pcount = atags.length;
     this.setState({
       linkCount: pcount,

@@ -11299,11 +11299,21 @@ var App = function (_Component) {
       });
     }
   }, {
+    key: 'downloadImage',
+    value: function downloadImage(url) {
+      console.log("trying to download: ", url);
+      chrome.downloads.download({
+        url: url
+      });
+    }
+  }, {
     key: 'render',
     value: function render() {
+      var _this2 = this;
+
       return _react2.default.createElement(
         'div',
-        { style: { width: 300, height: 100 } },
+        { style: { width: 600, height: 400 } },
         'This is the popup! ',
         this.props.count.clicks,
         _react2.default.createElement(
@@ -11320,12 +11330,18 @@ var App = function (_Component) {
             'Color BG Red'
           )
         ),
-        this.props.count.links.map(function (l) {
-          return _react2.default.createElement(
-            'div',
-            null,
-            l.toString()
-          );
+        this.props.count.links.map(function (n, i) {
+          console.log(n);
+          if (n.src != null) {
+            var src = n.src;
+            return _react2.default.createElement(
+              'div',
+              { key: i, onClick: function onClick(n) {
+                  _this2.downloadImage(src);
+                } },
+              n.src
+            );
+          }
         })
       );
     }
