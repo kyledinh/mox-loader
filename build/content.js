@@ -11321,12 +11321,6 @@ var App = function (_Component) {
     key: 'componentDidMount',
     value: function componentDidMount() {
 
-      // document.addEventListener('click', () => {
-      //   this.props.dispatch({
-      //     type: Type.ADD_COUNT
-      //   });
-      // });
-
       document.addEventListener('message', function (e) {
         var data = e.data;
         if (data) {

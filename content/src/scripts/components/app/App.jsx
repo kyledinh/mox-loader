@@ -39,12 +39,6 @@ class App extends Component {
 
   componentDidMount() {
 
-    // document.addEventListener('click', () => {
-    //   this.props.dispatch({
-    //     type: Type.ADD_COUNT
-    //   });
-    // });
-
     document.addEventListener('message', (e) => {
       const data = e.data;
       if (data) {

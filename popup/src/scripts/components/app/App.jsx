@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import {Type} from '../../../../../system';
+import {ImgLink} from '../ImgLink';
 
 class App extends Component {
   constructor(props) {
@@ -22,11 +23,26 @@ class App extends Component {
     });
   }
 
+  selectLink(i) {
+    let formdata = this.props.count.links;
+    let selected = formdata[i].selected ? true : false;
+    formdata[i].selected = !selected;
+
+    this.props.dispatch({
+      type: Type.ADD_LINKS,
+      links: formdata
+    });
+  }
+
   downloadImage(url) {
     console.log("trying to download: ", url);
     chrome.downloads.download({
       url: url
     });
+  }
+
+  downloadSelectedImages() {
+    alert('TODO: Will Download All selected!')
   }
 
   render() {
@@ -36,17 +52,17 @@ class App extends Component {
         <div>
           <button type="button" onClick={this.resetCounter.bind(this)}>Reset!</button>
           <button type="button" onClick={this.changeColor.bind(this)}>Color BG Red</button>
+          <button type="button" onClick={this.downloadSelectedImages.bind(this)}>Download Images</button>
+
         </div>
-        {this.props.count.links.map((n, i) => {
+        { this.props.count.links.map((n, i) => {
           console.log(n);
           if (n.src != null) {
-          let src = n.src;
-            return (
-                <div key={i} onClick={(n) => {this.downloadImage(src)}}>{n.src}</div>
-            )
+            let src = n.src;
+            return ( <ImgLink key={i} onClick={(n) => {this.selectLink(i)}} value={n.src} />)
+            //return (  <input key={i} onClick={(n) => {this.downloadImage(src)}} value={n.src} />)
           }
-          })
-        }
+        })}
       </div>
     );
   }
