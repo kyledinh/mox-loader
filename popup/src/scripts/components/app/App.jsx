@@ -42,17 +42,28 @@ class App extends Component {
   }
 
   downloadSelectedImages() {
-    alert('TODO: Will Download All selected!')
+    let cnt = 0;
+    this.props.count.links.map((n, i) => {
+      if (n.selected) {
+        this.downloadImage(n.src);
+        cnt++;
+      }
+    });
+    if (cnt === 0) {
+      alert('No image links are selected');
+    } else {
+      alert('Downloaded ' + cnt + ' images.')
+    }
   }
 
   render() {
     return (
       <div style={{width: 600, height: 400}}>
-        This is the popup! {this.props.count.clicks}
+        Pages scraped: {this.props.count.clicks}
         <div>
           <button type="button" onClick={this.resetCounter.bind(this)}>Reset!</button>
           <button type="button" onClick={this.changeColor.bind(this)}>Color BG Red</button>
-          <button type="button" onClick={this.downloadSelectedImages.bind(this)}>Download Images</button>
+          <button type="button" onClick={this.downloadSelectedImages.bind(this)}>Download Selected Images</button>
 
         </div>
         { this.props.count.links.map((n, i) => {

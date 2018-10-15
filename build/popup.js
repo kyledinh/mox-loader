@@ -11298,7 +11298,7 @@ var ImgLink = exports.ImgLink = function (_Component) {
             return _this2.props.onClick();
           } }),
         _react2.default.createElement('input', {
-          style: { width: '70%' },
+          style: { width: '80%' },
           value: this.props.value,
           name: this.props.name,
           disabled: this.props.disabled
@@ -11388,17 +11388,30 @@ var App = function (_Component) {
   }, {
     key: 'downloadSelectedImages',
     value: function downloadSelectedImages() {
-      alert('TODO: Will Download All selected!');
+      var _this2 = this;
+
+      var cnt = 0;
+      this.props.count.links.map(function (n, i) {
+        if (n.selected) {
+          _this2.downloadImage(n.src);
+          cnt++;
+        }
+      });
+      if (cnt === 0) {
+        alert('No image links are selected');
+      } else {
+        alert('Downloaded ' + cnt + ' images.');
+      }
     }
   }, {
     key: 'render',
     value: function render() {
-      var _this2 = this;
+      var _this3 = this;
 
       return _react2.default.createElement(
         'div',
         { style: { width: 600, height: 400 } },
-        'This is the popup! ',
+        'Pages scraped: ',
         this.props.count.clicks,
         _react2.default.createElement(
           'div',
@@ -11416,7 +11429,7 @@ var App = function (_Component) {
           _react2.default.createElement(
             'button',
             { type: 'button', onClick: this.downloadSelectedImages.bind(this) },
-            'Download Images'
+            'Download Selected Images'
           )
         ),
         this.props.count.links.map(function (n, i) {
@@ -11424,7 +11437,7 @@ var App = function (_Component) {
           if (n.src != null) {
             var src = n.src;
             return _react2.default.createElement(_ImgLink.ImgLink, { key: i, onClick: function onClick(n) {
-                _this2.selectLink(i);
+                _this3.selectLink(i);
               }, value: n.src });
             //return (  <input key={i} onClick={(n) => {this.downloadImage(src)}} value={n.src} />)
           }
