@@ -11290,7 +11290,7 @@ var ImgLink = exports.ImgLink = function (_Component) {
 
       return _react2.default.createElement(
         'div',
-        { key: this.props.key, style: { width: '100%' } },
+        { id: this.props.key, style: { width: '100%' } },
         _react2.default.createElement('input', {
           type: 'checkbox',
           checked: this.props.selected,
@@ -11347,7 +11347,10 @@ var App = function (_Component) {
   function App(props) {
     _classCallCheck(this, App);
 
-    return _possibleConstructorReturn(this, (App.__proto__ || Object.getPrototypeOf(App)).call(this, props));
+    var _this = _possibleConstructorReturn(this, (App.__proto__ || Object.getPrototypeOf(App)).call(this, props));
+
+    _this.state = { people: [] };
+    return _this;
   }
 
   _createClass(App, [{
@@ -11356,6 +11359,7 @@ var App = function (_Component) {
       this.props.dispatch({
         type: _system.Type.RESET_COUNT
       });
+      this.setState({ people: [] });
     }
   }, {
     key: 'changeColor',
@@ -11371,7 +11375,6 @@ var App = function (_Component) {
       var formdata = this.props.count.links;
       var selected = formdata[i].selected ? true : false;
       formdata[i].selected = !selected;
-
       this.props.dispatch({
         type: _system.Type.ADD_LINKS,
         links: formdata
@@ -11404,9 +11407,28 @@ var App = function (_Component) {
       }
     }
   }, {
+    key: 'fetchStarWars',
+    value: function fetchStarWars() {
+      var _this3 = this;
+
+      fetch("https://swapi.co/api/people/?page=1&format=json").then(function (res) {
+        return res.json();
+      }).then(function (payload) {
+        _this3.setState({
+          isLoaded: true,
+          people: payload.results
+        });
+      }, function (error) {
+        _this3.setState({
+          isLoaded: true,
+          error: error
+        });
+      });
+    }
+  }, {
     key: 'render',
     value: function render() {
-      var _this3 = this;
+      var _this4 = this;
 
       return _react2.default.createElement(
         'div',
@@ -11420,6 +11442,11 @@ var App = function (_Component) {
             'button',
             { type: 'button', onClick: this.resetCounter.bind(this) },
             'Reset!'
+          ),
+          _react2.default.createElement(
+            'button',
+            { type: 'button', onClick: this.fetchStarWars.bind(this) },
+            'Fetch SW'
           ),
           _react2.default.createElement(
             'button',
@@ -11437,9 +11464,21 @@ var App = function (_Component) {
           if (n.src != null) {
             var src = n.src;
             return _react2.default.createElement(_ImgLink.ImgLink, { key: i, onClick: function onClick(n) {
-                _this3.selectLink(i);
+                _this4.selectLink(i);
               }, value: n.src });
-            //return (  <input key={i} onClick={(n) => {this.downloadImage(src)}} value={n.src} />)
+          }
+        }),
+        _react2.default.createElement('br', null),
+        _react2.default.createElement('br', null),
+        this.state.people.map(function (p, i) {
+          console.log(p);
+          if (p.name != null) {
+            return _react2.default.createElement(
+              'h6',
+              { key: i },
+              p.name,
+              ' '
+            );
           }
         })
       );

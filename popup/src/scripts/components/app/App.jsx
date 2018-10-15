@@ -6,12 +6,14 @@ import {ImgLink} from '../ImgLink';
 class App extends Component {
   constructor(props) {
     super(props);
+    this.state = { people: [] };
   }
 
   resetCounter() {
     this.props.dispatch({
       type: Type.RESET_COUNT
     });
+    this.setState({people: []});
   }
 
   changeColor() {
@@ -27,7 +29,6 @@ class App extends Component {
     let formdata = this.props.count.links;
     let selected = formdata[i].selected ? true : false;
     formdata[i].selected = !selected;
-
     this.props.dispatch({
       type: Type.ADD_LINKS,
       links: formdata
@@ -56,12 +57,32 @@ class App extends Component {
     }
   }
 
+  fetchStarWars() {
+    fetch("https://swapi.co/api/people/?page=1&format=json")
+    .then(res => res.json())
+    .then(
+      (payload) => {
+        this.setState({
+          isLoaded: true,
+          people: payload.results
+        });
+      },
+      (error) => {
+        this.setState({
+          isLoaded: true,
+          error
+        });
+      }
+    )
+  }
+
   render() {
     return (
       <div style={{width: 600, height: 400}}>
         Pages scraped: {this.props.count.clicks}
         <div>
           <button type="button" onClick={this.resetCounter.bind(this)}>Reset!</button>
+          <button type="button" onClick={this.fetchStarWars.bind(this)}>Fetch SW</button>
           <button type="button" onClick={this.changeColor.bind(this)}>Color BG Red</button>
           <button type="button" onClick={this.downloadSelectedImages.bind(this)}>Download Selected Images</button>
 
@@ -71,7 +92,14 @@ class App extends Component {
           if (n.src != null) {
             let src = n.src;
             return ( <ImgLink key={i} onClick={(n) => {this.selectLink(i)}} value={n.src} />)
-            //return (  <input key={i} onClick={(n) => {this.downloadImage(src)}} value={n.src} />)
+          }
+        })}
+        <br/>
+        <br/>
+        { this.state.people.map((p, i) => {
+          console.log(p);
+          if (p.name != null) {
+            return ( <h6 key={i}>{p.name} </h6>)
           }
         })}
       </div>

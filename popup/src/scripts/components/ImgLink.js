@@ -8,7 +8,7 @@ export class ImgLink extends Component {
 
   render() {
     return (
-      <div key={this.props.key} style={{width: '100%'}} >
+      <div id={this.props.key} style={{width: '100%'}} >
         <input
           type="checkbox"
           checked={this.props.selected}
